@@ -4,8 +4,9 @@ import { REQUEST_URL } from './helpers';
 export const FETCH_MOVIES = 'FETCH_MOVIES';
 export const FETCH_MOVIES_SUCCESS = 'FETCH_MOVIES_SUCCESS';
 
+export const CAMERA_SWITCH = 'CAMERA_SWITCH';
+
 export function fetchMovies(card) {
-  console.log('dispatching');
   fetch(REQUEST_URL).then((response) => response.json())
     .then((responseData) => {
       const movies = responseData.movies;
@@ -18,5 +19,11 @@ export function fetchMovies(card) {
 
   return {
     type: FETCH_MOVIES
+  };
+}
+
+export function switchCamera() {
+  return {
+    type: CAMERA_SWITCH
   };
 }

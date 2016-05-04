@@ -1,24 +1,38 @@
 import { createStore, applyMiddleware } from 'redux';
 import createLogger from 'redux-logger';
+import Camera from 'react-native-camera';
 
-import { FETCH_MOVIES, FETCH_MOVIES_SUCCESS } from './actions';
+import { FETCH_MOVIES, FETCH_MOVIES_SUCCESS, CAMERA_SWITCH } from './actions';
 
 const defaultState = {
-  movies: []
+  movies: [],
+  loading: false,
+  camera: {
+    type: Camera.constants.Type.back
+  }
 }
 
 const reducer = (state = defaultState, action) => {
   switch(action.type) {
     case FETCH_MOVIES:
-      return {
+      return Object.assign({}, state, {
         movies: [],
         loading: true
-      }
+      });
     case FETCH_MOVIES_SUCCESS:
-      return {
+      return Object.assign({}, state, {
         movies: action.movies,
         loading: false
-      };
+      });
+    case CAMERA_SWITCH:
+      const nextType = (state.camera.type === Camera.constants.Type.back) ?
+                          Camera.constants.Type.front : Camera.constants.Type.back;
+                          
+      return Object.assign({}, state, {
+        camera: {
+          type: nextType
+        }
+      })
     default:
       return state;
   }
