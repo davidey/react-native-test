@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { store } from './store'
 import App from './app';
 import CameraTest from './components/CameraTest';
+import BeaconsTest from './components/BeaconsTest';
 import NavigationBar from './components/NavigationBar';
 
 class Root extends React.Component {
@@ -21,7 +22,7 @@ class Root extends React.Component {
             <NavigationBar />
           }
           renderScene={(route, navigator) =>
-            <App />
+            <BeaconsTest />
           } />
       </Provider>
     )
