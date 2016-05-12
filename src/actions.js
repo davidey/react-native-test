@@ -6,6 +6,8 @@ export const FETCH_MOVIES_SUCCESS = 'FETCH_MOVIES_SUCCESS';
 
 export const CAMERA_SWITCH = 'CAMERA_SWITCH';
 
+export const SAVE_BEACONS = 'SAVE_BEACONS';
+
 export function fetchMovies(card) {
   fetch(REQUEST_URL).then((response) => response.json())
     .then((responseData) => {
@@ -25,5 +27,12 @@ export function fetchMovies(card) {
 export function switchCamera() {
   return {
     type: CAMERA_SWITCH
+  };
+}
+
+export function saveBeacons(beacons) {
+  return {
+    type: SAVE_BEACONS,
+    beacons: beacons
   };
 }
